@@ -8,7 +8,7 @@ package Algorithm;
  */
 public class ReverseWords {
 	public String reverseWords(String s) {
-		if (s.isEmpty()) return ""; //cannot fix "   " all space problem 
+		if (s==null||s.isEmpty()) return ""; //cannot fix "   " all space problem 
 		
 		// reverse whole
 		char[] a = s.toCharArray();
@@ -44,6 +44,31 @@ public class ReverseWords {
 		return sb.toString();
 	}
 
+	
+	public String reverseWordsMethod2(String s){
+		
+		if (s==null||s.isEmpty()||s.trim().isEmpty()) return "";
+		char[] a=s.toCharArray();
+		revWord(a, 0,a.length);
+		int i=0,j=0;
+		while (i<a.length&& j<a.length){
+			if (a[j]==' '){
+				revWord(a, i, j);
+				i=j+1;
+				j=j+1;
+			}
+			else {
+				j++;
+			}
+		}
+		StringBuilder sb = new StringBuilder();
+		for (int k = 0; k < a.length; k++) {
+			sb = sb.append(a[k]);
+		}
+		return sb.toString(); 
+	}
+	
+	
 	public static void revWord(char[] a, int s, int l) {
 		l--;
 		int mid = s + (l - s) / 2;
@@ -59,9 +84,10 @@ public class ReverseWords {
 	
 	public static void main (String[] arg){
 		ReverseWords rw=new ReverseWords();
-		String s="";
+		String s=" fd sd";
 		//rw.reverseWords(s);
-		System.out.println(rw.reverseWords(s));
+		//System.out.println(rw.reverseWords(s));
+		System.out.println(rw.reverseWordsMethod2(s));
 	}
 
 }

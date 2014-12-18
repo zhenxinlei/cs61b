@@ -6,4 +6,8 @@ public class Parent {
 		return 2;
 		
 	}
+	
+	public final void method(){
+		System.out.println("parent final method");
+	}
 }
