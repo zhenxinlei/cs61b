@@ -44,7 +44,8 @@ public class BinaryTreeLevelOrderTraversal {
             if (curNode.right!=null) nextStack.add(curNode.right);
             
             if (curStack.isEmpty()&&!nextStack.isEmpty()) {
-                Collections.copy(curStack,nextStack);
+                //Collections.copy(curStack,nextStack);
+                curStack= new LinkedList<TreeNode>(nextStack);
                 nextStack.removeAll(nextStack);
                 List<Integer> newList=new ArrayList<Integer>();
                 result.add(newList);
