@@ -9,7 +9,7 @@ import java.lang.*;
 	          temp[i] =a[i]; 
 	        }
 	        int i=n;
-	        while ( a[i]!=null){
+	        while ( i<a.length){
 	            temp[n]=a[i];
 	            int j=n;
 	           for ( j =n ; j>0;j--){
