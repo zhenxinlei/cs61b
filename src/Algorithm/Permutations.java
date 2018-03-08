@@ -15,7 +15,7 @@ public class Permutations {
 	            List<Integer> r =  res.pollFirst();
 	            for (int i = 0; i <= r.size(); i++) {
 	                List<Integer> t = new ArrayList<Integer>(r);
-	                t.add(i, n);
+	                t.add(i, n); // add new element in between. 
 	                res.add(t);
 	            }
 	        }
