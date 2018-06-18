@@ -47,10 +47,25 @@ public class JumpGame {
 	 
 	 return result[0];
  }
+ 
+ public boolean canJump(int[] nums) {
+     int needStepAmt = 1;
+     for(int i = nums.length-2; i>=0; i--){
+         if(nums[i] < needStepAmt){
+             needStepAmt++;
+             continue;
+         }
+         needStepAmt = 1;
+     }
+     return needStepAmt==1;
+ }
+ 
  public static void main (String[] arg){
 	 	JumpGame cj=new JumpGame();
-	 	int [] nums={1,3,5,6};
+	 	int [] nums={3,2,1,1,4};
 		System.err.println(cj.solution(nums));
+		
+		System.err.println(cj.canJump(nums));
 		
 		
 	}
