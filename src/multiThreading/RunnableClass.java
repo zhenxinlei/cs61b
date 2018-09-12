@@ -26,7 +26,5 @@ public class RunnableClass implements Runnable {
 		}
 		
 	}
-	
-	
 
 }

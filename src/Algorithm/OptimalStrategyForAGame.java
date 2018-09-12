@@ -38,7 +38,15 @@ public class OptimalStrategyForAGame {
 		
 		int pick_right = array[right] + Math.min(solution_1(array, left, right-2), solution_1(array,left+1,right-1));
 		
-		
+		/***
+		 * Solution 2 :
+		 * 
+		 * left,right can be treat as x,y in coordinate 
+		 * thus we can store value in 2d matrix, on diag with gap 
+		 * 
+		 * http://alturl.com/q6sea
+		 * 
+		 */
 		
 		
 		return Math.max(pick_left, pick_right);

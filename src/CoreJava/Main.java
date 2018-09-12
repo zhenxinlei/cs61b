@@ -6,6 +6,9 @@ import java.io.InputStreamReader;
 
 public class Main {
 	public static void main(String[] args) throws IOException {
+		System.out.println(TestFinally());
+		
+		
 	    BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 	    String s;
 	    while ((s = in.readLine()) != null) {
@@ -15,7 +18,23 @@ public class Main {
 	    }
 	    
 	    
+	    
 	  }
+	
+	public static String TestFinally(){
+		try{
+			
+			System.out.println("running in try block");
+			return " return in try block ";
+		} catch(Exception e){
+			e.printStackTrace();
+		}
+		finally {
+			System.out.println("running in finally block");
+			return " return in finally block ";
+		}
+		
+	}
 	  
 	  
 	  
