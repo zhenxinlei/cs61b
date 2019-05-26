@@ -51,6 +51,8 @@ public class StoneGame {
          *    dp (0,2) =  max( p(0)- dp(1,2), p(2) - dp(0,1)
          *
          *    need to get value by diagonal first
+         *
+         *    OR always return true, first player always will
          */
 
 
