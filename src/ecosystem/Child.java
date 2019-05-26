@@ -2,7 +2,7 @@ package ecosystem;
 
 public class Child extends Parent {
 	
-	public final void method(){
+	public void method_1(){
 		System.out.println("child method");
 	}
 

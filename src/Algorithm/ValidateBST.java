@@ -6,6 +6,7 @@ public class ValidateBST {
 	
 	public  boolean isValidBST(TreeNode root){
 		if (root==null) return true;
+		return false;
 		
 		
 		
@@ -21,9 +22,9 @@ public class ValidateBST {
 		
 		
 		
-		if (root.left!=null && root.val<root.left.val) return false;
-		if (root.right!=null && root.val>root.right.val) return false;
-		
+//		if (root.left!=null && root.val<root.left.val) return false;
+//		if (root.right!=null && root.val>root.right.val) return false;
+//		
 		return solution(root.left)&&solution(root.right);
 	}
 	

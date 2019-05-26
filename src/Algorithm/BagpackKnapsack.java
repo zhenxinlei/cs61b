@@ -31,7 +31,6 @@ public class BagpackKnapsack {
 				} else {
 					if ( i ==0 ){
 						itemIdxToCap[i][j]= values[i];
-						
 					} else 
 					itemIdxToCap[i][j]= Math.max(itemIdxToCap[i-1][j], values[i]+ itemIdxToCap[i-1][j - weights[i]] );
 				}
