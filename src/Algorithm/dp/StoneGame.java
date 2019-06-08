@@ -1,4 +1,4 @@
-package Algorithm;
+package Algorithm.dp;
 
 /**
  * LeetCode 877 Stone Game

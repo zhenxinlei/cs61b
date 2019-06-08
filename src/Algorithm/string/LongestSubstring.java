@@ -1,4 +1,4 @@
-package Algorithm;
+package Algorithm.string;
 
 public class LongestSubstring {
 	 public static int lengthOfLongestSubstring(String s) {
@@ -39,6 +39,54 @@ public class LongestSubstring {
 	        
 	        return -1;
 		
+		}
+
+
+	/***
+	 * LeetCode passed
+	 * @param s
+	 * @return
+	 */
+	public static  int lengthOfLongestSubstring2(String s) {
+		if(s == null || s.isEmpty() )
+			return 0;
+
+		int char_index[] = new int[256];
+		for (int i =0; i <256; i++){
+			char_index[i]=-1;
+		}
+
+		char[] cArray=s.toCharArray();
+
+		int maxSoFar = 0;
+		int max =0;
+
+		int start = 0;
+
+		//O(n)
+		for (int i =0 ; i < cArray.length ; i ++ ){
+			int c = cArray[i];
+			int index = c;
+			int charPrevIndex = char_index[index];
+
+			if (char_index[index]>=0 && char_index[index] >= start){//repeate char
+
+					start = char_index[index] +1;
+					char_index[index] = i;
+					// no need to update maxsofar ,
+
+			} else {
+
+				maxSoFar = i -start +1;
+				max = Math.max(maxSoFar, max);
+				char_index[index] = i;
+
+			}
+
+		}
+		return max;
+
+
 	}
 
 		                                                     
@@ -46,6 +94,9 @@ public class LongestSubstring {
 	    public static void main(String[] args) {
 	    	String s="tmmzuxt";
 			System.err.println(LongestSubstring.lengthOfLongestSubstring(s));
+
+
+			System.out.println(LongestSubstring.lengthOfLongestSubstring2(s));
 		}
 
 }
