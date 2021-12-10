@@ -14,15 +14,20 @@ package Algorithm;
 
 public class LongestPalindromicSubstring {
     public static void main(String[] args) {
-        String test1 = solution1("abcbac");
+        String test1 = solution1("ac");
         System.out.println(" solution1() "+test1);
+
+        System.out.println("Sol2() "+solution2("cbbd"));
     }
 
     //dp [i][j] = substring start at i , end at j is palindorme or not
     public static String solution1(String str){
+
         int len = str.length();
+        if (len<2)
+            return str;
         boolean[][] dp = new boolean[len][len];
-        int maxLen = 0;
+        int maxLen = 1;
         int start = 0;
         //init dp diaglal element, must be true
         for (int i = 0 ;i<len;i++){
@@ -53,6 +58,44 @@ public class LongestPalindromicSubstring {
 
         return str.substring(start,start+maxLen);
 
+    }
+
+    //iter all possible center and expand , pay attention to duplicate letters
+    public static String solution2(String s) {
+        if (s==null||s.isEmpty()) return "";
+
+        int start=0;
+        int maxlen=1;
+
+        for (int i=0; i<s.length();i++){
+
+        //substring exclude j(start ), k (end)
+            int j=i;
+            int k=i;
+
+            //skip duplicate letter
+            while (k<s.length()&&s.charAt(i)==s.charAt(k)){
+                k++;
+            }
+
+            // asdfdghhhhhhgdflkjoijiou
+            //       j/i  k
+            k--;
+            //expand to two side
+            while (j>=0&&k<s.length()&&s.charAt(j)==s.charAt(k)){
+                k++;
+                j--;
+            }
+
+            int tempSize=k-j-1;
+
+            if (maxlen<tempSize){
+                maxlen=tempSize;
+                start=j+1;
+            }
+
+        }
+        return s.substring(start,start+maxlen);
     }
 
 }
