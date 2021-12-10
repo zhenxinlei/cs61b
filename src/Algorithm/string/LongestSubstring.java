@@ -89,6 +89,38 @@ public class LongestSubstring {
 
 	}
 
+	//2021/12/08
+	//leetcode #3
+	public static int lengthOfLongestSubstring3(String s ){
+		//sliding window
+		if (s== null || s.length()==0)
+			return 0;
+
+		int[] freq = new int[256];
+		//init freq array
+		//for (int i=0;i<freq.length;i++){
+		//	freq[i]=-1;
+		//}
+
+		int left =0;
+		int right = -1;
+		int res = 0;
+
+		while (left<s.length()) {
+			if(right+1<s.length()&& freq[s.charAt(right+1)]==0){ // first occurrence
+				freq[s.charAt(right+1)]++;
+				right++; //move right index;
+			} else { //repeat char
+				freq[s.charAt(left)]--;
+				left++; //move left index
+			}
+
+			res = Math.max(res, right-left+1);
+		}
+
+		return res;
+	}
+
 		                                                     
 	    
 	    public static void main(String[] args) {
@@ -97,6 +129,8 @@ public class LongestSubstring {
 
 
 			System.out.println(LongestSubstring.lengthOfLongestSubstring2(s));
+
+			System.out.println(" lengthOfLongestSubstring3():   "+ lengthOfLongestSubstring3(s));
 		}
 
 }
