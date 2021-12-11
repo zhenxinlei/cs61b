@@ -29,7 +29,7 @@ public class MiniChangesToMakeAlterBinaryString {
             return 0;
 
         for (int i =0 ; i <str.length();i++){
-            if (  str.charAt(i)-'0' != i%2){
+            if (  str.charAt(i)-'0' != i%2){ //compare 01010101....0101, the other way to flip must be len()-result
                 result++;
             }
         }
