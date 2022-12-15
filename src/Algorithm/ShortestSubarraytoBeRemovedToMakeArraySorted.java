@@ -22,7 +22,7 @@ public class ShortestSubarraytoBeRemovedToMakeArraySorted {
         }
         if (r ==0) //all sorted
              return 0;
-        int min = arr.length;
+        int min = r;
         for(;l<arr.length;l++){
             if(l>0 && arr[l-1]>arr[l])
                 break;
@@ -32,6 +32,8 @@ public class ShortestSubarraytoBeRemovedToMakeArraySorted {
             min = Math.min(min, r-l-1);
         }
 
+        //min = Math.min(r , l);
+
         return min;
     }
 
@@ -39,5 +41,14 @@ public class ShortestSubarraytoBeRemovedToMakeArraySorted {
         int arr[] = new int[]{1,2,3,10,4,2,3,5};
         int res = solution(arr);
         System.out.println(res);
+
+        arr= new int[]{16,10,0,3,22,1,14,7,1,12,15};
+        System.out.println(solution(arr));
+
+        arr= new int[]{5,4,3,2,1};
+        System.out.println(solution(arr));
+
+        arr= new int[]{1,2,3,10,4,2,3,5};
+        System.out.println(solution(arr));
     }
 }
