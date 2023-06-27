@@ -18,6 +18,8 @@ public class LongestPalindromicSubstring {
         System.out.println(" solution1() "+test1);
 
         System.out.println("Sol2() "+solution2("cbbd"));
+
+        System.out.println(" pratice1 "+practice1("cbbd"));
     }
 
     //dp [i][j] = substring start at i , end at j is palindorme or not
@@ -97,5 +99,44 @@ public class LongestPalindromicSubstring {
         }
         return s.substring(start,start+maxlen);
     }
+
+    //pratice
+    public static String practice1(String s){ //on^2
+        //dp
+        /**
+         *  col end id
+         *  row start id
+         *
+         *
+         */
+        boolean [][] dp = new boolean[s.length()][s.length()];
+
+        dp[0][0]=true;
+        int maxLen = 0;
+        int resStart=0;
+        int resEnd = 0;
+        for(int end=1; end<s.length();end++){
+            for(int start = 0; start<end;start++){
+                if(s.charAt(start)!=s.charAt(end)){
+                    dp[start][end]=false;
+                } else{
+                    if(start==end || start+1==end || start+1==end-1){
+                        dp[start][end]=true;
+                    } else {
+                        dp[start][end]= dp[start+1][end-1]; //update from priouse state ,   [.... start, start+1, .... end-1, end.. ]
+                    }
+                }
+
+                if(dp[start][end] && end-start+1> maxLen ){
+                    maxLen = end-start+1;
+                    resStart=start;
+                    resEnd = end;
+                }
+            }
+        }
+
+        return s.substring(resStart, resEnd+1);
+    }
+
 
 }

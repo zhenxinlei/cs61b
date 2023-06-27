@@ -37,6 +37,39 @@ public class MinimumWindowSubstring {
     	
         
     }
+
+	public String minWindow2(String s, String t) {
+		int[] freq = new int[128];
+		int count = t.length();
+		for(int i = 0; i < t.length();i++){
+			freq[t.charAt(i)]++; //freq of char in T
+		}
+
+		int l =0, r = 0;
+		int start =-1;//start index of result string , if -1(not found) return ""
+		int min = Integer.MAX_VALUE; //min length
+		while (r<s.length()){//if r reach end , will move left till no more match , then r++ , and exit
+			if(freq[s.charAt(r)]-->0){//not match char freq <0 , match char will be Zero
+				count--;//found match in s
+			}
+			//count ==0 , all matched in window l to r
+			while(count==0){
+				if(r-l+1<min){
+					min = r-l+1;
+					start = l;
+				} else {
+					if(freq[s.charAt(l)]==0){ //removing match char
+						count++;
+					}
+					freq[s.charAt(l)]++;
+					l++;
+				}
+			}
+
+			r++;
+		}
+		return start==-1?"":s.substring(start,start+min);
+	}
     
     //private String minWin="";
     

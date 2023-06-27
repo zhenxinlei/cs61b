@@ -1,9 +1,6 @@
 package Algorithm;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class Permutations {
 	
@@ -29,27 +26,17 @@ public class Permutations {
 		// start is last element , no need to do permute
 		// append entire array to result
 		if (start==num.length-1){
-
 			ArrayList<Integer> tmp =new ArrayList<>(Arrays.asList(num));
 			res.add(tmp);
 			return;
 		}
-
-
 		for ( int i = start; i<num.length; i ++) {
 			//swap index and start
 			SWAP(num, start, i);
-
 			permute_sol2(res, num, start + 1);
-
 			// swap back
 			SWAP(num, start,i);
 		}
-
-
-
-
-
 		return ;
 	}
 
@@ -66,7 +53,13 @@ public class Permutations {
 		p.permute_sol2(res, num, 0);
 		//print2DList(res);
 		System.out.println(res.toString());
-		
+
+		System.out.println(permutation(7, new HashMap<Integer, Integer>()));
+
+		res.clear();
+		practice_230314(num, 0,   res);
+		System.out.println(res.toString());
+
 	}
 
 
@@ -88,5 +81,35 @@ public class Permutations {
 		}
 
 	}
+
+
+	public static int permutation(int num, Map<Integer, Integer> perm){
+		//System.out.println(num+" "+perm);
+		Integer ans = perm.get(num);
+		if(ans==null){
+			ans = 1;
+			if(num!=1){
+				ans = num*permutation(num-1,perm);
+			}
+			perm.put(num, ans);
+		}
+		return ans;
+	}
+
+	//function get permutaion of nums rangr from startId to end
+	public static void practice_230314(Integer[] nums, int startId,  List<List<Integer>> res){
+		if(startId==nums.length-1){//last one, only one permuation , copy nums to res
+			ArrayList<Integer> tmp = new ArrayList<>(Arrays.asList(nums));
+			res.add(tmp);
+		}
+
+		for(int i = startId;i< nums.length;i++){
+			SWAP(nums,i, startId);//swap later number into startID,
+			practice_230314(nums,startId+1,res);//get permutaion of nums range from startId+1 to end
+			SWAP(nums, i , startId);
+		}
+	}
+
+
 
 }

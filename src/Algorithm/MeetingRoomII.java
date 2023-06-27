@@ -21,6 +21,12 @@ import java.util.PriorityQueue;
  */
 public class MeetingRoomII {
     /*
+    Given an array of meeting time intervals consisting of
+    start and end times [[s1,e1],[s2,e2],...] (si < ei), find the minimum number of conference rooms required.
+     */
+
+
+    /*
      扫描线
      将所有时间点 排序
      [[0, 15],[5, 20],[25, 30]],
@@ -107,17 +113,65 @@ public class MeetingRoomII {
                 j++;
                 ct--;
             }
-
         }
 
         return max;
     }
+
+    //pq + sort
+    public static int pratice_230206_2(int[][] meetings){
+        PriorityQueue<int[]> pq_endtime = new PriorityQueue<>((a,b)-> a[1]-b[1]); //offer meeting into q, pop up the least
+         //end time first
+        Arrays.sort(meetings,(a,b)-> a[0]!=b[0]? a[0]-b[0]: a[1]-b[1]); //sort meeting by start time
+        int max = 0;
+        pq_endtime.add(meetings[0]);
+        for(int i =1; i < meetings.length;i++){
+            if(meetings[i][0]> pq_endtime.peek()[1]){//start after meeting in q;
+                pq_endtime.poll();
+            }
+            pq_endtime.add(meetings[i]);
+            max = Math.max(max, pq_endtime.size());
+        }
+        return max;
+    }
+
+    public int pratice_230206_1(int[][] meetings){
+        int[] starts = new int[meetings.length];
+        int[] ends = new int[meetings.length];
+
+        for(int i =0; i <meetings.length; i++){
+            starts[i]=meetings[i][0];
+            ends[i]=meetings[i][1];
+        }
+        Arrays.sort(starts);//nlogn
+        Arrays.sort(ends);
+        int ct = 0;
+        int max = 0;
+        int i =0;
+        int j =0;
+        while(i<starts.length && j<ends.length){//On
+            if(starts[i]<ends[j]){
+                ct++;
+                max = Math.max(ct,max);
+                i++;
+            } else {
+                ct--;
+                j++;
+            }
+        }
+
+        return max;
+    }
+
 
     public static void main(String[] args) {
         int ct = solution(new int[][]{{0, 30},{5, 10},{15, 20}});
         System.out.println(ct);
 
          ct = solution2(new int[][]{{0, 30},{5, 10},{15, 20}});
+        System.out.println(ct);
+
+        ct = pratice_230206_2(new int[][]{{0, 30},{5, 10},{15, 20}});
         System.out.println(ct);
     }
 
