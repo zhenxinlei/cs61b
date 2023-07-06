@@ -13,6 +13,7 @@ import java.util.Stack;
        ....
        max of all result =12
 
+//make sure stack element are able to be 等差数列, until at  peek() not valid then  from i to peek()+1 等差数列 ,
 
  */
 public class FindMaxProductFromPile {

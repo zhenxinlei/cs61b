@@ -47,9 +47,26 @@ public class BestTimetoBuyandSellStockIII {
          
         
     }
+
+
+
+
+    public static int maxProfit2(int[] prices) {
+        int n=prices.length;
+        if(n==0) return 0;
+        int[][] dp=new int[3][n];
+        for (int k=1;k<=2;k++){
+            int min=prices[0];
+            for (int i=1;i<n;i++){
+                min=Math.min(min, prices[i]-dp[k-1][i-1]);
+                dp[k][i] = Math.max(dp[k][i-1], prices[i] - min);
+            }
+        }
+        return dp[2][n-1];
+    }
 	
 	public static void main(String[] args) {
-		int [] a={1,2,3};
+		int [] a={3,3,5,0,0,3,1,4};
 		BestTimetoBuyandSellStockIII bt=new BestTimetoBuyandSellStockIII();
 		System.err.println(bt.maxProfit(a));
 	}
