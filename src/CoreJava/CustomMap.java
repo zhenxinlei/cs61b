@@ -1,13 +1,12 @@
 package CoreJava;
 
-import java.util.ArrayList;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 public class CustomMap {
 
     public static void main(String[] args) {
         testSortedMap();
+        func1();
     }
 
     public static void  testSortedMap(){
@@ -24,6 +23,16 @@ public class CustomMap {
         CustomMap map = new CustomMap();
         map.equals(obj1);
 
+    }
+
+    public static void func1 (){
+        try {
+            TreeMap<Object, Object> map = new TreeMap<>();
+            map.put(new Object(), Integer.valueOf(1));
+            map.put(new Object(), Integer.valueOf(1));
+        } catch (ClassCastException e ){
+            e.printStackTrace();
+        }
     }
 
 
